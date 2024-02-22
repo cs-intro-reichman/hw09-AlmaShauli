@@ -58,19 +58,18 @@ public class List {
 
     /** GIVE Textual representation of this list. */
     public String toString() {
-        // Your code goes here
-        if (size == 0)
+
+        if (size == 0) {
             return "()";
-        // Starting from the first node, iterates through this list
-        // and builds the string incrementally
-        String str = "(";
+        }
+        StringBuilder str = new StringBuilder("(");
         Node current = first;
         while (current != null) {
-            str += current.cp.toString();
+            str.append(current.cp.toString()).append(" ");
             current = current.next;
         }
-        // Removes the trailing space and adds the ‘)’
-        return str.substring(0, str.length() - 1) + "))";
+        str.deleteCharAt(str.length() - 1).append(")");
+        return str.toString();
     }
 
     /**
@@ -83,13 +82,13 @@ public class List {
         Node current = first;
         int index = 0;
         while (current != null) {
-            if (this.first.cp.equals(chr)) {
+            if (current.cp.chr == chr) {
                 return index;
             }
             current = current.next;
             index++;
         }
-        return -1; // Value not found
+        return -1;
     }
 
     /**
@@ -99,11 +98,10 @@ public class List {
      */
     public void update(char chr) {
         // Your code goes here
-
         Node current = first;
         boolean inTheList = false;
         while (current != null) {
-            if (current.cp.equals(chr)) {
+            if (current.cp.chr == chr) {
                 inTheList = true;
                 current.cp.count += 1;
             }
@@ -121,10 +119,9 @@ public class List {
      */
     public boolean remove(char chr) {
         // Your code goes here
-
         Node prev = null;
         Node current = first;
-        while (current != null && !this.first.cp.equals(chr)) {
+        while (current != null && current.cp.chr != chr) {
             prev = current;
             current = current.next;
         }
@@ -146,7 +143,6 @@ public class List {
      */
     public CharData get(int index) {
         // Your code goes here
-
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException();
         }
@@ -159,7 +155,7 @@ public class List {
             current = current.next;
             index++;
         }
-        throw new IllegalArgumentException();
+        return null;
     }
 
     /**

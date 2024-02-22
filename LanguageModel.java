@@ -43,7 +43,7 @@ public class LanguageModel {
         char c;
         In in = new In(fileName);
         // Reads just enough characters to form the first window
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < windowLength; i++) {
             window += in.readChar();
         }
 
@@ -134,6 +134,7 @@ public class LanguageModel {
      */
     public String generate(String initialText, int textLength) {
         // Your code goes here
+        return "P";
     }
 
     /** Returns a string representing the map of this language model. */
