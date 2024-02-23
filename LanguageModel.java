@@ -132,22 +132,21 @@ public class LanguageModel {
      */
     public String generate(String initialText, int textLength) {
         // Your code goes here
-        if (initialText.length() <= this.windowLength || initialText.length() >= textLength) {
+        if (initialText.length() < this.windowLength || initialText.length() >= textLength) {
             return initialText;
         }
-        String text = initialText;
+        String newText = initialText;
         String window = initialText.substring(initialText.length() - windowLength);
-        while (text.length() - windowLength < textLength) {
+        while (newText.length() - windowLength < textLength) {
             if (CharDataMap.containsKey(window)) {
                 char chr = getRandomChar(CharDataMap.get(window));
-                text += chr;
+                newText += chr;
                 window = window.substring(1) + chr;
             } else {
-                return text;
+                return newText;
             }
         }
-        return text;
-
+        return newText;
     }
 
     /** Returns a string representing the map of this language model. */
