@@ -4,8 +4,31 @@ import java.io.FileWriter;
 
 public class LanguageModelTester {
     public static void main(String[] args) {
-        testCalculateProbabilities();
-
+        String methodName = args[0];
+        boolean result = false;
+        switch (methodName) {
+            case "calculateProbabilities":
+                result = testCalculateProbabilities();
+                break;
+            case "getRandomChar":
+                result = testGetRandomChar();
+                break;
+            case "train":
+                result = testTrain();
+                break;
+            case "generate":
+                result = testGenerate();
+                break;
+            case "all":
+                result = testCalculateProbabilities();
+                result = result && testGetRandomChar();
+                result = result && testTrain();
+                result = result && testGenerate();
+                break;
+            default:
+                break;
+        }
+        System.out.println("Test " + methodName + " result: " + (result ? "PASSED" : "FAILED"));
     }
 
     // Test method for the calculateProbabilities() method
@@ -44,7 +67,6 @@ public class LanguageModelTester {
             }
             boolean res = true;
             model.calculateProbabilities(list);
-            System.out.println(list.toString());
             for (int j = 0; j < words[i].length(); j++) {
                 char actual = model.getRandomChar(list);
                 boolean temp = actual == expected[i][j];
