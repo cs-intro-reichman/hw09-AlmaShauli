@@ -153,7 +153,7 @@ public class List {
                 return current.cp;
             }
             current = current.next;
-            index++;
+            currentIndex++;
         }
         return null;
     }

@@ -108,13 +108,11 @@ public class LanguageModel {
     public char getRandomChar(List probs) {
         // Your code goes here
 
-        double r = Math.random();
-        System.out.println("r: " + r);
+        double r = this.randomGenerator.nextDouble();
         ListIterator listIterator = probs.listIterator(0);
         while (listIterator.hasNext()) {
             CharData charData = listIterator.next();
             if (charData.cp > r) {
-                System.out.println("in: " + charData.chr);
                 return charData.chr;
             }
         }

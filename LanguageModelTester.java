@@ -4,7 +4,7 @@ import java.io.FileWriter;
 
 public class LanguageModelTester {
     public static void main(String[] args) {
-        testTrain();
+        testCalculateProbabilities();
 
     }
 
